@@ -17,7 +17,7 @@ shp2pgsql -I -s 4326 fematemp/$first_file.shp $gis_table | sudo -u postgres psql
 rm -rf fematemp
 
 
-# Initialize append table.
+# Now we append data to the table.
 for fema_file in $(cut -d , -f 2 femadownload.csv | tail -n+2) ; do
   mkdir fematemp &&
   wget -qO- -O fematemp/$fema_file.zip https://hazards.fema.gov/nfhlv2/output/State/$fema_file.zip &&
